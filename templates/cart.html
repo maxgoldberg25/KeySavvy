@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/home-button.css">
+</head>
+<body class="cart">
+    <header>
+        <h1>KeySavvy</h1>
+        <a href="/product" class="home-button">Home</a>
+    </header>
+    <h2>Shopping Cart</h2>
+    {% for item in cart_items %}
+    <ul>
+        <li>{{ item['name'] }} - ${{ item['price'] }}</li>
+    </ul>
+    {% endfor %}
+    <div class="subtotal">
+        Subtotal: ${{ subtotal }}
+    </div>
+    <form action="/clear_cart" method="post">
+        <button class="clear-cart-btn" type="submit" onclick="clearCart()">Clear Cart</button>
+    </form>
+    <script src="/static/js/flash.js"></script>
+</body>
+</html>
+

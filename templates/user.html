@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Update</title>
+</head>
+<body>
+    {% block content %}
+    <p>Please update your email address, confirm with your password:</p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="#" method="POST">
+        <input type="email" name="email" placeholder="Enter Email" value="{{email if email}}">
+        <input type="password" name="password" placeholder="Enter Password" value="{{password if password}}">
+        <input type="submit" value="submit">
+    </form>
+    {% endblock %}
+</body>
+</html>

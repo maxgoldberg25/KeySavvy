@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="product">
+    <header><a href="/" class="bttn">KeySavvy</a></header>
+    
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+        <!-- Cart button -->
+        <div class="cart-button">
+            <a href="/cart">
+                <img src="{{ url_for('static', filename='images/cart.png') }}" alt="Cart">
+            </a>
+        </div>
+
+    <h1>Products</h1>
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="dropbtn">User Settings</button>
+            <div class="dropdown-content">
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Log In</a>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+    </div>
+    <div class="product-container">
+        {% for product in products %}
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+                <h3>{{ product['title'] }}</h3>
+               
+                <p>Price: ${{ product['price'] }}</p>
+                <div class="actions">
+                    <a href="{{ url_for('product_details', product_id=product['id']) }}">View Details</a>
+                   
+                    <!-- Form to add the product to the cart -->
+                    <form action="{{ url_for('add_to_cart', product_id=product['id']) }}" method="post">
+                        <input type="hidden" name="product_id" value="{{ product['id'] }}">
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                     <!-- Form to add the product to the cart -->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <!-- JavaScript file -->
+    <script src="/static/js/flash.js"></script>
+</body>
+</html>
+

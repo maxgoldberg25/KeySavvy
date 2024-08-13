@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="login-sheet">
+    <div class="container">
+        <h1>Log In:</h1>
+        {% block content %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p>{{ msg }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="#" method="POST" class="login-form">
+                <p>Please Enter Your Email and Password:</p>
+                <!-- <input type="text" name="nm" class="input-field" placeholder="Enter Username" value="{{ text if text }}"> -->
+                <input type="email" name="email" class="input-field" placeholder="Enter Email" value="{{ email if email }}">
+                <input type="password" name="password" class="input-field" placeholder="Enter Password" value="{{ password if password }}">
+                <p><input type="submit" value="Submit" class="submit-btn"></p>
+            </form>
+        {% endblock %}
+    </div>
+</body>
+</html>

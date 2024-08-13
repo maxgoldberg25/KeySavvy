@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="product-description">
+  
+    <a href="/product" class="home-button">Home</a>
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="dropbtn">User Settings</button>
+            <div class="dropdown-content">
+                <a href="/signup">Sign Up</a>
+                <a href="/login">Log In</a>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+    </div>
+
+        <!-- Cart button -->
+        <div class="cart-button">
+            <a href="/cart">
+                <img src="/static/images/cart.png" alt="Cart">
+            </a>
+        </div>
+
+    <h3>{{ product['title'] }}</h3>
+    <div class="product-details">
+        <img src="/static/images/{{ product['image'] }}" alt="{{ product['title'] }}">
+        <h3>{{ product['title'] }}</h3>
+        <p>Price: ${{ product['price'] }}</p>
+        <!-- Form to add the product to the cart -->
+        <form action="/add_to_cart/{{ product['id'] }}" method="post">
+            <input type="hidden" name="product_id" value="{{ product['id'] }}">
+            <button type="submit">Add to Cart</button>
+        </form>
+        <!-- Form to add the product to the cart -->
+        
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="feedback-page">
+    <a href="/product" class="home-button">Home</a>
+    <h1>User Feedback</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.name.label }}<br>
+            {{ form.name(class="input-field feedback-input") }}<br>
+            {% for error in form.name.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.email.label }}<br>
+            {{ form.email(class="input-field feedback-input") }}<br>
+            {% for error in form.email.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.message.label }}<br>
+            {{ form.message(class="input-field feedback-input") }}<br>
+            {% for error in form.message.errors %}
+                <span class="error">{{ error }}</span><br>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit(class="submit-btn") }}
+        </div>
+    </form>
+</body>
+</html>
